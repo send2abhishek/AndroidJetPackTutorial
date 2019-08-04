@@ -6,6 +6,8 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.MutableLiveData;
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
 import com.attra.androidjetpacktutorial.ViewModels.MainActivityViewModel;
@@ -23,7 +25,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         setContentView(R.layout.activity_main);
         viewModel= ViewModelProviders.of(this).get(MainActivityViewModel.class);
         counter=findViewById(R.id.activity_main_counter_text);
-        counter.setText(String.valueOf(viewModel.getIntialValue()));
+
+        MutableLiveData<Integer> counterLiveData=viewModel.getIntialValue();
+        counterLiveData.observe(this, new Observer<Integer>() {
+            @Override
+            public void onChanged(Integer integer) {
+                counter.setText(String.valueOf(integer));
+            }
+        });
+        //counter.setText(String.valueOf(viewModel.getIntialValue()));
         increment=findViewById(R.id.activity_main_btn_inc);
         increment.setOnClickListener(this);
     }
@@ -32,7 +42,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void onClick(View v) {
 
 
-        counter.setText(String.valueOf(viewModel.getIncrementCounter()));
+        viewModel.getIncrementCounter();
     }
 
 
