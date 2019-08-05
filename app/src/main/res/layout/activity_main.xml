@@ -1,27 +1,60 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".MainActivity">
 
-    <TextView
+<layout>
+
+    <data>
+
+        <variable
+            name="clickhandlers"
+            type="com.attra.androidjetpacktutorial.MainActivity.HandleClicks" />
+
+    </data>
+
+
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:text="0"
-        android:textSize="20sp"
-        android:textAlignment="center"
-        android:id="@+id/activity_main_counter_text"
-        />
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Inc"
-        android:layout_below="@id/activity_main_counter_text"
-        android:layout_centerHorizontal="true"
-        android:id="@+id/activity_main_btn_inc"
-        />
+        android:layout_height="match_parent"
+        tools:context=".MainActivity">
 
-</RelativeLayout>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="0"
+            android:textSize="20sp"
+            android:textAlignment="center"
+            android:id="@+id/activity_main_counter_text"
+            />
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Inc"
+            android:layout_below="@id/activity_main_counter_text"
+            android:layout_centerHorizontal="true"
+            android:id="@+id/activity_main_btn_inc"
+            />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Data Binding Activity"
+            android:layout_below="@id/activity_main_btn_inc"
+            android:layout_centerHorizontal="true"
+            android:id="@+id/activity_main_btn_newActivity"
+            android:onClick="startDataBindingActivity"
+            />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/activity_main_onClickBtn"
+            android:text="Click Me"
+            android:onClick="@{clickhandlers::getClickBtn}"
+            android:layout_below="@id/activity_main_btn_newActivity"
+            android:layout_centerInParent="true"
+            />
+
+    </RelativeLayout>
+</layout>
